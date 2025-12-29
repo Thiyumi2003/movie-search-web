@@ -2,6 +2,8 @@
 
 A **movie search web application** that lets users search for movies, view details, IMDb rating, genres, plot, and director, and watch trailers on YouTube. Newly searched movies appear at the top, while older searches stay below, forming a vertical list.
 
+<img src="/image.png" alt="Movie Search App" width="600"/>
+
 ---
 
 ## 🌟 Features
@@ -33,3 +35,13 @@ A **movie search web application** that lets users search for movies, view detai
 
 ```bash
 git clone https://github.com/<your-username>/<repository-name>.git
+```
+
+2. **Navigate to the project folder**:
+```bash
+cd <repository-name>
+```
+
+3. **Open index.html in your preferred browser.**
+
+⚠️ Requires an active internet connection to fetch movie data and watch trailers.
