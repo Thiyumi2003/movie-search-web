@@ -1,5 +1,20 @@
 let apiKey = "d5a82b51";
 
+// Require a logged-in user stored in localStorage
+const currentUserRaw = localStorage.getItem("loggedInUser");
+if (!currentUserRaw) {
+    window.location.href = "login/login.html";
+}
+let currentUser = currentUserRaw ? JSON.parse(currentUserRaw) : null;
+
+function persistCurrentUser(user) {
+    currentUser = user;
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    users = users.map(u => (u.username === user.username ? user : u));
+    localStorage.setItem("users", JSON.stringify(users));
+}
+
 function search() {
     let movieName = document.getElementById("movie").value.trim();
     if (!movieName) return;
@@ -37,11 +52,19 @@ function search() {
                 <div class="director">Director: ${movie.Director}</div>
                 <button class="trailer-btn" onclick="watchTrailer('${movie.Title}')">▶ Watch Trailer</button>
             </div>
+
+            <button class="trailer-btn" onclick="addFavourite('${movie.Title}')">❤️ Favourite</button>
+
         `;
 
         // Insert new movie at the top
         container.insertBefore(card, container.firstChild);
     };
+}
+
+function logout() {
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "login/login.html";
 }
 
 function generateStars(imdbRating) {
@@ -58,3 +81,27 @@ function watchTrailer(title) {
     let url = "https://www.youtube.com/results?search_query=" + encodeURIComponent(query);
     window.open(url, "_blank");
 }
+
+function addFavourite(title) {
+    if (!currentUser) {
+        alert("Please log in first");
+        window.location.href = "login/login.html";
+        return;
+    }
+
+    const favs = currentUser.favourites || [];
+    if (favs.includes(title)) return;
+
+    const updatedUser = {
+        ...currentUser,
+        favourites: [...favs, title]
+    };
+
+    persistCurrentUser(updatedUser);
+    alert("Added to favourites ❤️");
+}
+
+function goProfile() {
+    window.location.href = "profile/profile.html";
+}
+

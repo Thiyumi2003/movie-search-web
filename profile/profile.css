@@ -1,0 +1,45 @@
+body {
+    background: #141414;
+    color: white;
+    font-family: Poppins, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(../login/home.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.profile-card {
+    width: 400px;
+    padding: 25px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    border: 2px solid #000000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background: #000000;
+    color: white;
+    cursor: pointer;
+}
+
+.button-row {
+    display: flex;
+    gap: 10px;
+}
